@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Task2Process</name>
+    </assembly>
+    <members>
+        <member name="M:Task2Process.Controllers.ForumSectionApiController.Get">
+            <summary>
+            Get all existing forum sections
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Task2Process.Controllers.ForumSectionApiController.Post(Task2Process.DtoModels.ForumSectionCreateEditDto)">
+            <summary>
+            Create new forum section
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Task2Process.Controllers.ForumSectionApiController.Put(Task2Process.DtoModels.ForumSectionCreateEditDto,System.Int32)">
+            <summary>
+            Edit forum section with a given id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Task2Process.Controllers.ForumSectionApiController.Delete(System.Int32)">
+            <summary>
+            Delete forum section with a given id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Task2Process.Controllers.MessageApiController.Get(System.Int32)">
+            <summary>
+            Get all messages in a topic with a given id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Task2Process.Controllers.MessageApiController.Post(Task2Process.DtoModels.MessageCreateEditDto,System.Int32)">
+            <summary>
+            Create new message in a topic with a given id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Task2Process.Controllers.MessageApiController.Put(Task2Process.DtoModels.MessageCreateEditDto,System.Int32)">
+            <summary>
+            Edit message with a given id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Task2Process.Controllers.MessageApiController.Delete(System.Int32)">
+            <summary>
+            Delete message with a given id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Task2Process.Controllers.TopicApiController.#ctor(Task2Process.Services.ITopicService)">
+            <summary>
+            Get all topics in a forum section with a given id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Task2Process.Controllers.TopicApiController.Post(Task2Process.DtoModels.TopicCreateEditDto,System.Int32)">
+            <summary>
+            Create new topic in a forum section with a given id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Task2Process.Controllers.TopicApiController.Put(Task2Process.DtoModels.TopicCreateEditDto,System.Int32)">
+            <summary>
+            Edit topic with a given id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Task2Process.Controllers.TopicApiController.Delete(System.Int32)">
+            <summary>
+            Delete topic with a given id
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,63 @@
+﻿@using Task2Process.ViewModels
+@model MessageEditViewModel
+
+@{ ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<h1>Edit</h1>
+
+<h4>Message</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Text" class="control-label"></label>
+                <input asp-for="Text" class="form-control" />
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+
+            <input type="hidden" asp-for="TopicId">
+            @for (int i = 0; i < Model.Attachments.Count; i++)
+            {
+                <input name="Attachments[@i].Id" type="hidden" value="@Model.Attachments.ToArray()[i].Id">
+                <input name="Attachments[@i].FileName" type="hidden" value="@Model.Attachments.ToArray()[i].FileName">
+            }
+            <div class="row">
+                @foreach (var file in Model.Attachments)
+                {
+                    <div class="col">
+                        <div class="row">
+                            <div class="col"> Existing Attachment </div> |
+                            <a asp-action="Delete" asp-controller="Attachment" asp-route-id="@file.Id" class="col">Delete</a>
+                        </div>
+                        <div class="row">
+                            <img class="col" src="~/@file.FileName" />
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="form-group">
+                <label class="control-label">Add Attachment</label>
+                <input multiple type="file" name="files" class="form-control-file" />
+            </div>
+@*            <div class="form-group">
+                <input name="authorId" type="hidden" value="@Model.AuthorId" />
+            </div>*@
+        <div class="form-group">
+            <input type="hidden" asp-for="AuthorId" value="@Model.AuthorId">
+            <input type="hidden" asp-for="SectionId" value="@Model.SectionId">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Message" asp-route-topicId="@Model.TopicId">Back to list</a>
+</div>
+
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@

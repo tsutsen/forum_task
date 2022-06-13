@@ -1,0 +1,65 @@
+﻿@using Task2Process.ViewModels
+@model ModeratedSectionsIndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a asp-action="Index" asp-controller="ForumSection">< Back to sections</a>
+
+<h1>@Model.SectionName</h1>
+
+
+@using (Html.BeginForm("Update", "Administration", FormMethod.Post))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Section Mod
+                </th>
+                <th>
+                    User Id
+                </th>
+                <th>
+                    UserName
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Users)
+            {
+                <tr>
+                    <td>
+                        @if (item.IsModerator)
+                        {
+                            <input checked type="checkbox" name="SelectedUsers" value="@item.UserId">
+                        }
+                        else
+                        {
+                            <input type="checkbox" name="SelectedUsers" value="@item.UserId">
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <hr />
+
+    <input type="hidden" name="CurrentSectionId" value="@Model.CurrentSectionId" />
+    <input type="hidden" name="SectionName" value="@Model.SectionName" />
+    <input type="hidden" name="Users" value="@Model.Users" />
+    <input type="submit" value="Batch Update Moderators" class="btn btn-primary" />
+
+}
+
+
+

@@ -1,0 +1,33 @@
+﻿@model Task2Process.ViewModels.AdministrationViewModel
+
+@{
+    ViewData["Title"] = "Remove";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>You are about to remove @Model.UserName from the moderators of @Model.ForumSectionName section</h3>
+<div>id: @Model.UserId</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Remove">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="UserId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="UserName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="ForumSectionId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="ForumSectionName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Confirm" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

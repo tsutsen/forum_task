@@ -1,0 +1,45 @@
+﻿@using Task2Process.ViewModels
+@model ForumSectionIndexViewModel
+
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<h1>Forum Sections</h1>
+
+@if (User.HasClaim(Constants.AdminClaimName, ""))
+{
+    <p>
+        <a asp-action="Create">+ Create new section</a>
+    </p>
+}
+
+<hr>
+
+@foreach (var item in Model.ForumSections)
+{
+    <div class="row">
+        <div class="col-md-9">
+            <h2>@Html.DisplayFor(model => item.Name)</h2>
+            <h4>@Html.DisplayFor(model => item.Description)</h4>
+        </div>
+        <div class="col-md-3">
+            <a asp-action="Index" asp-controller="Topic" asp-route-sectionId="@item.Id">View topics</a> |
+            @Html.ActionLink("Details", "Details", new { id = item.Id })
+            @if (item.IsAuthorized)
+            {
+                @:|
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            }
+
+            @if (User.HasClaim(Constants.AdminClaimName, ""))
+            {
+                @:|
+                <a asp-action="Delete" asp-controller="ForumSection" asp-route-id="@item.Id">Delete</a>
+                @:|
+                <a asp-action="Index" asp-controller="Administration" asp-route-sectionId="@item.Id">View Moderators</a> 
+            }
+        </div>
+    </div>
+
+    <hr>
+}

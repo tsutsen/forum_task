@@ -1,0 +1,51 @@
+﻿@using Task2Process.ViewModels
+@model MessageCreateViewModel
+
+@{ ViewData["Title"] = "Create";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<h1>Create</h1>
+
+<h4>Message</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger" enctype="multipart/form-data"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="AuthorId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="TopicId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Text" class="control-label"></label>
+                <input asp-for="Text" class="form-control" />
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">files</label>
+                <input multiple type="file" name="files" class="border form-control-file" />
+
+                @*                <span class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <input name="topicId" type="hidden" value="@Model.TopicId" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<div>
+    <a asp-action="Index" asp-controller="Message" asp-route-topicId="@Model.TopicId">Back to list</a>
+</div>
+
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@

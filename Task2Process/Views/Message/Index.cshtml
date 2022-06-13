@@ -1,0 +1,48 @@
+﻿@using Task2Process.ViewModels
+@model MessageIndexViewModel
+
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div>
+    <a asp-action="Index" asp-controller="Topic" asp-route-sectionId="@Model.SectionId">< Back to topics</a>
+</div>
+
+<h1>@Model.TopicName</h1>
+
+<p>
+    <a asp-action="Create" asp-controller="Message" asp-route-topicId="@Model.TopicId">+ Create new message</a>
+</p>
+
+<hr>
+
+@foreach (var item in Model.Messages)
+{
+    <div class="row">
+        <div class="col-md-8">
+            <b>@item.AuthorUserName</b>
+            <small> | on @Html.DisplayFor(model => item.Created)</small>
+            @if (item.Modified != null)
+            {
+    <small> | Edited @Html.DisplayFor(modelItem => item.Modified)</small>}
+        </div>
+        <div class="col-md-4">
+
+            @Html.ActionLink("Details", "Details", new { id = item.Id })
+            @if (item.IsAuthorized)
+            {
+                @:|
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) @:|
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            }
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.DisplayFor(modelItem => item.Text)
+        </div>
+    </div>
+
+    <hr>
+}

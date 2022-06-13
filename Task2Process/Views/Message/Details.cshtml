@@ -1,0 +1,60 @@
+﻿@using Task2Process.ViewModels
+@model MessageViewModel
+
+@{ ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<h1>Details</h1>
+
+<div>
+    <h4>Message</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AuthorUserName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AuthorUserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Modified)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Modified)
+        </dd>
+        @foreach (var file in Model.Attachments)
+        {
+            <dt class="col-sm-2">
+                Attachment
+            </dt>
+            <dd class="col-sm-10">
+                <img src="~/@file.FileName" />
+                <a asp-action="Details" asp-controller="Attachment" asp-route-id="@file.Id">Details</a>
+            </dd>
+        }
+
+    </dl>
+</div>
+<div>
+
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    <a asp-action="Index" asp-controller="Message" asp-route-topicId="@Model.TopicId">Back to list</a>
+</div>
